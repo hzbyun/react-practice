@@ -1,8 +1,8 @@
 import React from 'react';
 
-const person = () => {
+const person = (props) => {
     // This is how to add js code in the middle of jsx
-    return <p>I'm a Person! I am {Math.floor(Math.random() * 30)} years old.</p>
+    return <p>I'm {props.name}! I am {props.age} years old.</p>
 }
 
 export default person;
