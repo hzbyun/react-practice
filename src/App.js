@@ -6,14 +6,21 @@ class App extends Component {
   // this state is the only property that we can use under the class inherited by Component
   // *if this state is changed, react render this component. (run render() again)
   state = {
-    person: [
+    persons: [
       { name: 'James', age: 32},
       { name: 'Isabella', age: 31}
     ]
   }
 
   switchNameHandler = () => {
-    console.log('clicked');
+    // Don't do this!! react does not recommend to mutate the state directly
+    //this.state.persons[0].name = "Issachar"
+    this.setState({
+        persons: [
+        { name: 'James', age: 31},
+        { name: 'Isabella', age: 30}
+      ]
+    })
   }
   
   render() {
@@ -25,8 +32,8 @@ class App extends Component {
             Just assign the reference by removing () at the end
         */}
         <button onClick={this.switchNameHandler}>Change Name</button>
-        <Person name={this.state.person[0].name} age={this.state.person[0].age}> props.children will render this </Person>
-        <Person name={this.state.person[1].name} age={this.state.person[1].age}/>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}> props.children will render this </Person>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
       </div>
     );
 
