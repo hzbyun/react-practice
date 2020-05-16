@@ -1,2 +1,2 @@
 # react-practice
-This is my react practice
+This is for training a react development
