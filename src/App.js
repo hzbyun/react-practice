@@ -12,13 +12,13 @@ class App extends Component {
     ]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newAge) => {
     // Don't do this!! react does not recommend to mutate the state directly
     //this.state.persons[0].name = "Issachar"
     this.setState({
         persons: [
-        { name: 'James', age: 31},
-        { name: 'Isabella', age: 30}
+        { name: 'James', age: newAge},
+        { name: 'Isabella', age: newAge}
       ]
     })
   }
@@ -27,13 +27,20 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        {/* DO NOT add () at the end of this.switchNameHandler
-            this.switchNameHandler() means it will excute this function whenever render components
-            Just assign the reference by removing () at the end
+
+        {/*
+          () => this.switchNameHandler(...) vs this.switchNameHandler.bind(this, ...)
+          These 2 are same..
+          but this.switchNameHandler.bind(this, ...) is preferred.     
         */}
-        <button onClick={this.switchNameHandler}>Change Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}> props.children will render this </Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        <button onClick={() => this.switchNameHandler(5)}>Change Name</button>
+        <Person 
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          click={this.switchNameHandler.bind(this, 40)}> props.children will render this </Person>
+        <Person 
+          name={this.state.persons[1].name} 
+          age={this.state.persons[1].age}/>
       </div>
     );
 
