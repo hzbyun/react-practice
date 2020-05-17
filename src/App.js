@@ -17,6 +17,7 @@ const app = props => {
 
   const switchNameHandler = () => {
     // Important : setPersonsState does NOT merge a state, BUT replace a state.
+    // That is why seggregating useState for each business case is a common practice.
     setPersonsState({
         persons: [
         { name: 'James', age: 31},
