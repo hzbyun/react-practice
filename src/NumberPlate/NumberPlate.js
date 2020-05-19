@@ -10,6 +10,9 @@ const numberPlate = (props) => {
 
         colums.push(value);
     }
+
+    //Sort numbers in an array in ascending order
+    colums.sort((a, b) => a-b);
     
     return (
         <p>
