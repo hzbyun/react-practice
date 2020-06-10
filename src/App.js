@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'; // thanks to WebPack, we can import css onto js file
 import Person from './Person/Person';
-import person from './Person/Person';
+
 
 class App extends Component {
   // this state is the only property that we can use under the class inherited by Component
@@ -14,17 +14,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newAge) => {
-    // Don't do this!! react does not recommend to mutate the state directly
-    //this.state.persons[0].name = "Issachar"
-    this.setState({
-      persons: [
-        { name: 'James', age: newAge },
-        { name: 'Isabella', age: newAge }
-      ]
-    })
-  }
-
   nameChangeHandler = (event) => {
     this.setState({
       persons: [
@@ -32,6 +21,12 @@ class App extends Component {
         { name: 'Isabella', age: 10 }
       ]
     })
+  }
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   }
 
   togglePersonHandler = () => {
@@ -53,14 +48,13 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            click={this.switchNameHandler.bind(this, 40)}
-            changed={this.nameChangeHandler}> props.children will render this </Person>
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age} />
+          {this.state.persons.map((person, index) => {
+            return (<Person 
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+            />)
+          })}
         </div>
       );
     }
