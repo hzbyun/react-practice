@@ -3,9 +3,9 @@ import React from 'react';
 const numberPlate = (props) => {
     const colums = []
     for (var i = 0; i < props.colCount; i++) {
-        var value = Math.floor(Math.random() * 44 + 1);
+        var value = Math.floor(Math.random() * 45 + 1);
         while (colums.includes(value)) {
-            value = Math.floor(Math.random() * 44 + 1);
+            value = Math.floor(Math.random() * 45 + 1);
         }
 
         colums.push(value);
